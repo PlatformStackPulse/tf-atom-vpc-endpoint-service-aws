@@ -5,12 +5,7 @@ resource "aws_vpc_endpoint_service" "this" {
   network_load_balancer_arns = var.network_load_balancer_arns
   gateway_load_balancer_arns = var.gateway_load_balancer_arns
   private_dns_name           = var.private_dns_name
-
-  dynamic "supported_ip_address_types" {
-    for_each = length(var.supported_ip_address_types) > 0 ? [1] : []
-    content {
-    }
-  }
+  supported_ip_address_types = var.supported_ip_address_types
 
   tags = module.this.tags
 }
